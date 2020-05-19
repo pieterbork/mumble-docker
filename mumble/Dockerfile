@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
 	build-essential \
+        git \
 	pkg-config \
 	qt5-default \
 	libboost-dev \

@@ -53,7 +53,6 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY --from=0 /root/mumble/release/murmurd /usr/bin/murmurd
-COPY --from=0 /root/mumble/scripts/murmur.ini /etc/murmur/murmur.ini
 
 RUN mkdir /var/lib/murmur && \
 	chown murmur:murmur /var/lib/murmur && \

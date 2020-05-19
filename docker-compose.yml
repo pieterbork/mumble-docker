@@ -2,15 +2,24 @@ version: '3.7'
 
 services:
     mumble-web:
-        build: ./mumble-web
+        image: mumble-web:latest
     mumble-web-proxy:
-        build: ./web-proxy
+        image: web-proxy:latest
+        ports:
+          - "64738:64738"
+        links:
+          - "mumble-server:mumble"
     mumble-server:
-        build: ./mumble
+        image: mumble:latest
+        ports:
+          - "64737:64737"
     nginx:
         image: nginx:latest
         ports: 
           - "80:80"
           - "443:443"
         volumes:
-          - ./nginx.conf:/etc/nginx.conf
+          - /opt/mumble/nginx.conf:/etc/nginx/conf.d/mumble.conf
+        links:
+          - "mumble-web:web"
+          - "mumble-web-proxy:proxy"

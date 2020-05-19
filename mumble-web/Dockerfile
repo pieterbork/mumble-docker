@@ -2,6 +2,7 @@ FROM alpine:edge
 
 LABEL maintainer="Andreas Peters <support@aventer.biz>"
 
+RUN apk add git
 WORKDIR /home
 RUN git clone https://github.com/Johni0702/mumble-web.git && mv mumble-web node
 
@@ -32,4 +33,4 @@ EXPOSE 8080
 ENV MUMBLE_SERVER=mumble:64738
 
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD websockify --ssl-target --web=/home/node/dist 8080 "$MUMBLE_SERVER"
+CMD websockify --web=/home/node/dist 8080 "$MUMBLE_SERVER"

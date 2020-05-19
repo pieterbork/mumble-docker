@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+    mumble-web:
+        build: ./mumble-web
+    mumble-web-proxy:
+        build: ./web-proxy
+    mumble-server:
+        build: ./mumble
+    nginx:
+        image: nginx:latest
+        ports: 
+          - "80:80"
+          - "443:443"
+        volumes:
+          - ./nginx.conf:/etc/nginx.conf

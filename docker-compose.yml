@@ -43,6 +43,9 @@ services:
           - /opt/mumble/privkey.pem:/etc/mumble/privkey.pem:ro
         networks:
           - mumble-net
+        depends_on:
+          - mumble-web
+          - mumble-web-proxy
     botamusique:
         container_name: mumble-music
         image: botamusique:latest
@@ -52,6 +55,9 @@ services:
           mumble-net:
             aliases:
               - musicbot
+        depends_on:
+          - mumble-server
+
 
 networks:
     mumble-net:

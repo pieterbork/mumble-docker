@@ -21,7 +21,9 @@ services:
           - "50051:50051"
           - "64738:64738"
         volumes:
-          - /opt/mumble/murmur:/etc/murmur:ro
+          - /opt/mumble/fullchain.pem:/etc/murmur/fullchain.pem:ro
+          - /opt/mumble/privkey.pem:/etc/murmur/privkey.pem:ro
+          - /opt/mumble/murmur.ini:/etc/murmur/murmur.ini:ro
         networks:
           mumble-net:
             aliases:
@@ -33,7 +35,8 @@ services:
           - "443:443"
         volumes:
           - /opt/mumble/nginx.conf:/etc/nginx/conf.d/mumble.conf
-          - /etc/letsencrypt:/etc/letsencrypt:ro
+          - /opt/mumble/fullchain.pem:/etc/murmur/fullchain.pem:ro
+          - /opt/mumble/privkey.pem:/etc/murmur/privkey.pem:ro
         networks:
           - mumble-net
 

@@ -5,16 +5,17 @@ services:
         image: mumble-web:latest
     mumble-web-proxy:
         image: web-proxy:latest
+        ports:
+          - "64737:64737"
         links:
           - "mumble-server:mumble"
     mumble-server:
         image: mumble:latest
         ports:
-          - "64737:64737"
+          - "50051:50051"
           - "64738:64738"
         volumes:
-          - /opt/murmur/murmer.ini:/etc/murmur/murmur.ini:ro
-          - /etc/letsencrypt:/etc/letsencrypt:ro
+          - /opt/mumble/murmur:/etc/murmur:ro
     nginx:
         image: nginx:latest
         ports:

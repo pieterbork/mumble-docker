@@ -43,6 +43,13 @@ services:
           - /opt/mumble/privkey.pem:/etc/mumble/privkey.pem:ro
         networks:
           - mumble-net
+    botamusique:
+        container_name: mumble-music
+        image: botamusique:latest
+        volumes:
+          - /opt/mumble/botamusique.ini:/etc/botamusique.ini
+        networks:
+          - mumble-net
 
 networks:
     mumble-net:

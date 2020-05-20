@@ -2,12 +2,14 @@ version: '3.7'
 
 services:
     mumble-web:
+        container_name: mumble-web
         image: mumble-web:latest
         networks:
           mumble-net:
             aliases:
               - web
     mumble-web-proxy:
+        container_name: mumble-web-proxy
         image: web-proxy:latest
         ports:
           - "64737:64737"
@@ -16,6 +18,7 @@ services:
             aliases:
               - proxy
     mumble-server:
+        container_name: mumble-server
         image: mumble:latest
         ports:
           - "50051:50051"
@@ -29,6 +32,7 @@ services:
             aliases:
               - mumble
     nginx:
+        container_name: nginx
         image: nginx:latest
         ports:
           - "80:80"

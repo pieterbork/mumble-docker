@@ -49,7 +49,9 @@ services:
         volumes:
           - /opt/mumble/botamusique.ini:/etc/botamusique.ini
         networks:
-          - mumble-net
+          mumble-net:
+            aliases:
+              - musicbot
 
 networks:
     mumble-net:

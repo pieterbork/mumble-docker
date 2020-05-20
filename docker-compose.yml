@@ -3,12 +3,18 @@ version: '3.7'
 services:
     mumble-web:
         image: mumble-web:latest
+        networks:
+          mumble-net:
+            aliases:
+              - web
     mumble-web-proxy:
         image: web-proxy:latest
         ports:
           - "64737:64737"
-        links:
-          - "mumble-server:mumble"
+        networks:
+          mumble-net:
+            aliases:
+              - proxy
     mumble-server:
         image: mumble:latest
         ports:
@@ -16,6 +22,10 @@ services:
           - "64738:64738"
         volumes:
           - /opt/mumble/murmur:/etc/murmur:ro
+        networks:
+          mumble-net:
+            aliases:
+              - mumble
     nginx:
         image: nginx:latest
         ports:
@@ -24,6 +34,8 @@ services:
         volumes:
           - /opt/mumble/nginx.conf:/etc/nginx/conf.d/mumble.conf
           - /etc/letsencrypt:/etc/letsencrypt:ro
-        links:
-          - "mumble-web:web"
-          - "mumble-web-proxy:proxy"
+        networks:
+          - mumble-net
+
+networks:
+    mumble-net:

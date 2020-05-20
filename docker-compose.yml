@@ -26,7 +26,7 @@ services:
         volumes:
           - /opt/mumble/fullchain.pem:/etc/mumble/fullchain.pem:ro
           - /opt/mumble/privkey.pem:/etc/mumble/privkey.pem:ro
-          - /opt/mumble/murmur.ini:/etc/mumble/murmur.ini:ro
+          - /opt/mumble/murmur.ini:/etc/murmur/murmur.ini:ro
         networks:
           mumble-net:
             aliases:

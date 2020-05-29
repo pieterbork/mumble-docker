@@ -41,6 +41,8 @@ services:
           - /opt/mumble/nginx.conf:/etc/nginx/conf.d/mumble.conf
           - /opt/mumble/fullchain.pem:/etc/mumble/fullchain.pem:ro
           - /opt/mumble/privkey.pem:/etc/mumble/privkey.pem:ro
+          - /opt/wordpress/fullchain.pem:/etc/wordpress/fullchain.pem:ro
+          - /opt/wordpress/privkey.pem:/etc/wordpress/privkey.pem:ro
         networks:
           wp-net:
             aliases:

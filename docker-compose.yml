@@ -42,7 +42,12 @@ services:
           - /opt/mumble/fullchain.pem:/etc/mumble/fullchain.pem:ro
           - /opt/mumble/privkey.pem:/etc/mumble/privkey.pem:ro
         networks:
-          - mumble-net
+          wp-net:
+            aliases:
+              - nginx
+          mumble-net:
+            aliases:
+              - nginx
         depends_on:
           - mumble-web
           - mumble-web-proxy
@@ -61,3 +66,6 @@ services:
 
 networks:
     mumble-net:
+      name: mumble-net
+    wp-net:
+      name: wp-net
